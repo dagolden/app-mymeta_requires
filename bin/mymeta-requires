@@ -1,0 +1,61 @@
+#!perl
+use 5.010;
+use strict;
+use warnings;
+package mymeta_requires;
+# VERSION
+
+use strict;
+use warnings;
+use App::mymeta_requires;
+exit App::mymeta_requires->run;
+
+# PODNAME: mymeta-requires
+# ABSTRACT: goes here
+
+=pod
+
+=head1 SYNOPSIS
+
+  $ mymeta-requires
+
+  PHASE OPTIONS:
+  --runtime     (default: on)
+  --build       (default: on)
+  --test        (default: on)
+  --develop     (default: off)
+
+  TYPE OPTIONS
+  --recommends  (default: on)
+  --suggests    (default: on)
+
+  OTHER OPTIONS:
+  --verbose,  -v  Slightly more verbose logging
+  --help,     -h  Usage help
+
+  All long-style options may be negated, e.g. "--no-test"
+
+=head1 DESCRIPTION
+
+This program extracts CPAN module requirements as recorded in a F<MYMETA.json>
+or F<MYMETA.yml> file and prints them one-perl-line to STDOUT.  It is intended
+to help install prerequisites manually using a CPAN client.  For example, with
+L<ExtUtils::MakeMaker> 6.58 (which writes F<MYMETA> files and
+L<App::cpanminus>:
+
+  $ perl Makefile.PL
+  $ mymeta-requires | cpanm
+
+The various configuration options allow customizing which prerequisite
+prerequisite phases and types are extracted.  (See L<CPAN::Meta/"PREREQUITIES">
+for an explanation of phases and types.)
+
+By default all phases except C<develop> are included and types C<requires>,
+C<recommends> and C<suggests>.  Any phase or type may be negated by prefixing
+C<no-> to the option. E.g.
+
+  $ mymeta-requires --no-suggests
+
+=cut
+
+# vim: ts=2 sts=2 sw=2 et:
