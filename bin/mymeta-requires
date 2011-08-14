@@ -23,6 +23,7 @@ exit App::mymeta_requires->run;
   --runtime     (default: on)
   --build       (default: on)
   --test        (default: on)
+  --configure   (default: on)
   --develop     (default: off)
 
   TYPE OPTIONS
@@ -61,6 +62,20 @@ C<recommends> and C<suggests>.  Any phase or type may be negated by prefixing
 C<no-> to the option. E.g.
 
   $ mymeta-requires --no-suggests
+
+If no F<MYMETA.json> or F<MYMETA.yml> file is found, this will fall back
+to using a F<META.json> or F<META.yml>  This is not guaranteed to have
+all dependencies, but may be useful for bootstrapping configuration
+requirements.  E.g.
+
+  # get any configuration requirements
+  $ mymeta-requires | cpanm
+
+  # run configuration
+  $ perl Makefile.PL
+
+  # repeat to get any dynamic dependencies
+  $ mymeta-requires | cpanm
 
 =cut
 

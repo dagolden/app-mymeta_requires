@@ -27,7 +27,7 @@
    "prereqs" : {
       "configure" : {
           "requires" : {
-            "ExtUtils::MakeMaker" : "0"
+            "X::Configure::Requires" : "0"
           }
       },
       "develop" : {

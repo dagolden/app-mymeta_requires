@@ -1,6 +1,8 @@
 Revision history for App-mymeta_requires
 
 {{$NEXT}}
+    - Added support for configuration requirements
+    - Added fallback to META.json|yml
 
 0.001     2011-08-13 22:40:55 America/New_York
     - First release

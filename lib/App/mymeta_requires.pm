@@ -19,6 +19,7 @@ my $opt_spec = [
   Switch("verbose|v"),
   Switch("help|h"),
   Switch("runtime|r")->default(1),
+  Switch("configure|c")->default(1),
   Switch("build|b")->default(1),
   Switch("test|t")->default(1),
   Switch("develop|d")->default(0),
@@ -62,7 +63,7 @@ sub load_mymeta {
   my $self = shift;
   my @candidates = $self->opt->get_file
     ? ($self->opt->get_file)
-    : qw/MYMETA.json MYMETA.yml/;
+    : qw/MYMETA.json MYMETA.yml META.json META.yml/;
   for my $f ( @candidates ) {
     next unless -r $f;
     my $mymeta = eval { CPAN::Meta->load_file($f) }
@@ -78,7 +79,7 @@ sub load_mymeta {
 sub merge_prereqs {
   my ($self, $prereqs) = @_;
   my $merged = Version::Requirements->new;
-  for my $phase (qw(runtime build test develop)) {
+  for my $phase (qw(configure runtime build test develop)) {
     my $get_p = "get_$phase";
     next unless $self->opt->$get_p;
     # Always get 'requires'
