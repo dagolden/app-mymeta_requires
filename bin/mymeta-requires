@@ -47,6 +47,11 @@ files) and L<App::cpanminus>:
   $ perl Makefile.PL
   $ mymeta-requires | cpanm
 
+Or with the traditional F<cpan> client:
+
+  $ perl Makefile.PL
+  $ cpan $(mymeta-requires)
+
 The various configuration options allow customizing which prerequisite
 prerequisite phases and types are extracted.  (See L<CPAN::Meta/"PREREQUITIES">
 for an explanation of phases and types.)
