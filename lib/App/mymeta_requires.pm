@@ -61,7 +61,7 @@ sub run {
 sub load_mymeta {
   my $self = shift;
   my @candidates = $self->opt->get_file
-    ? ($self->_opt->get_file)
+    ? ($self->opt->get_file)
     : qw/MYMETA.json MYMETA.yml/;
   for my $f ( @candidates ) {
     next unless -r $f;
