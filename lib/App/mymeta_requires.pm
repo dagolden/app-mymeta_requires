@@ -111,7 +111,14 @@ sub find_missing {
 
 # ABSTRACT: Extract module requirements from MYMETA files
 
-=for Pod::Coverage method_names_here
+=for Pod::Coverage
+find_missing
+load_mymeta
+logger
+merge_prereqs
+new
+opt
+run
 
 =begin wikidoc
 
