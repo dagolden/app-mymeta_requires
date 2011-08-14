@@ -11,13 +11,13 @@ use App::mymeta_requires;
 exit App::mymeta_requires->run;
 
 # PODNAME: mymeta-requires
-# ABSTRACT: goes here
+# ABSTRACT: Extract module requirements from MYMETA files
 
 =pod
 
 =head1 SYNOPSIS
 
-  $ mymeta-requires
+  Usage: mymeta-requires [OPTIONS...]
 
   PHASE OPTIONS:
   --runtime     (default: on)
@@ -38,9 +38,9 @@ exit App::mymeta_requires->run;
 =head1 DESCRIPTION
 
 This program extracts CPAN module requirements as recorded in a F<MYMETA.json>
-or F<MYMETA.yml> file and prints them one-perl-line to STDOUT.  It is intended
-to help install prerequisites manually using a CPAN client.  For example, with
-L<ExtUtils::MakeMaker> 6.58 (which writes F<MYMETA> files and
+or F<MYMETA.yml> file and prints them one-perl-line to C<STDOUT>.  It is
+intended to help install prerequisites manually using a CPAN client.  For
+example, with L<ExtUtils::MakeMaker> 6.58 (which writes F<MYMETA> files) and
 L<App::cpanminus>:
 
   $ perl Makefile.PL

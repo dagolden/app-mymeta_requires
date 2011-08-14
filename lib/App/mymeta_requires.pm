@@ -109,11 +109,11 @@ sub find_missing {
 
 1;
 
-# ABSTRACT: Extract prerequisites from MYMETA files
+# ABSTRACT: Extract module requirements from MYMETA files
 
 =for Pod::Coverage method_names_here
 
-=begin :wikidoc
+=begin wikidoc
 
 = SYNOPSIS
 
@@ -125,7 +125,7 @@ sub find_missing {
 This module contains the guts of the L<mymeta_requires> program.  See
 that program for command line usage information.
 
-=end :wikidoc
+=end wikidoc
 
 =cut
 
