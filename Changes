@@ -2,6 +2,8 @@ Revision history for App-mymeta_requires
 
 {{$NEXT}}
 
+0.003     2012-05-18 12:41:41 America/New_York
+
   [CHANGED]
 
   - Replaced use of Version::Requirements (deprecated) with
