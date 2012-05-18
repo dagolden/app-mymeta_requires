@@ -12,7 +12,7 @@ use CPAN::Meta;
 use Log::Dispatchouli;
 use Getopt::Lucid ':all';
 use Object::Tiny qw/opt logger/;
-use Version::Requirements;
+use CPAN::Meta::Requirements;
 
 my $opt_spec = [
   Param("file|f"),
@@ -78,7 +78,7 @@ sub load_mymeta {
 
 sub merge_prereqs {
   my ($self, $prereqs) = @_;
-  my $merged = Version::Requirements->new;
+  my $merged = CPAN::Meta::Requirements->new;
   for my $phase (qw(configure runtime build test develop)) {
     my $get_p = "get_$phase";
     next unless $self->opt->$get_p;
