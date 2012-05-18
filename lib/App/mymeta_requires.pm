@@ -3,6 +3,7 @@ use strict;
 use warnings;
 
 package App::mymeta_requires;
+# ABSTRACT: Extract module requirements from MYMETA files
 # VERSION
 
 # Dependencies
@@ -109,8 +110,6 @@ sub find_missing {
 }
 
 1;
-
-# ABSTRACT: Extract module requirements from MYMETA files
 
 =for Pod::Coverage
 find_missing
