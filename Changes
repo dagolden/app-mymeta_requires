@@ -2,6 +2,10 @@ Revision history for App-mymeta_requires
 
 {{$NEXT}}
 
+  [FIXED]
+
+  - Correctly check version of installed modules against the requirement
+
 0.003     2012-05-18 12:41:41 America/New_York
 
   [CHANGED]

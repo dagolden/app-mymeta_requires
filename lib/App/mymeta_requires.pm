@@ -100,7 +100,7 @@ sub find_missing {
   my @missing;
   for my $mod ( $prereqs->required_modules ) {
     if ( try_load_class($mod) ) {
-      push @missing, $mod unless $prereqs->accepts_module($mod);
+      push @missing, $mod unless $prereqs->accepts_module($mod, $mod->VERSION);
     }
     else {
       push @missing, $mod;
