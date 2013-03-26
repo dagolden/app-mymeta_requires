@@ -1,10 +1,12 @@
+=pod
+
 =head1 NAME
 
 App::mymeta_requires - Extract module requirements from MYMETA files
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -31,7 +33,7 @@ run
 =head2 Bugs / Feature Requests
 
 Please report any bugs or feature requests through the issue tracker
-at L<http://rt.cpan.org/Public/Dist/Display.html?Name=App-mymeta_requires>.
+at L<https://github.com/dagolden/app-mymeta_requires/issues>.
 You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
@@ -41,7 +43,7 @@ public review and contribution under the terms of the license.
 
 L<https://github.com/dagolden/app-mymeta_requires>
 
-  git clone https://github.com/dagolden/app-mymeta_requires.git
+  git clone git://github.com/dagolden/app-mymeta_requires.git
 
 =head1 AUTHOR
 
