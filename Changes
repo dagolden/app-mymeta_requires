@@ -2,6 +2,10 @@ Revision history for App-mymeta_requires
 
 {{$NEXT}}
 
+  [FIXED]
+
+  - Skip 'perl' is list of prerequisites
+
 0.004     2013-03-26 14:50:46 America/New_York
 
   [FIXED]

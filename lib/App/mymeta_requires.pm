@@ -99,6 +99,7 @@ sub find_missing {
   my ($self, $prereqs) = @_;
   my @missing;
   for my $mod ( $prereqs->required_modules ) {
+    next if $mod eq 'perl';
     if ( try_load_class($mod) ) {
       push @missing, $mod unless $prereqs->accepts_module($mod, $mod->VERSION);
     }
