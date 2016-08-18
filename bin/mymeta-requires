@@ -3,7 +3,8 @@ use 5.010;
 use strict;
 use warnings;
 package mymeta_requires;
-# VERSION
+
+our $VERSION = '0.006';
 
 use strict;
 use warnings;

@@ -4,7 +4,8 @@ use warnings;
 
 package App::mymeta_requires;
 # ABSTRACT: Extract module requirements from MYMETA files
-# VERSION
+
+our $VERSION = '0.006';
 
 # Dependencies
 use autodie 2.00;
@@ -153,6 +154,7 @@ logger
 merge_prereqs
 new
 opt
+prereq_report
 run
 
 =begin wikidoc

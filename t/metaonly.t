@@ -9,7 +9,7 @@ use Test::More 0.92;
 
 use App::mymeta_requires;
 
-# Everything listed in t/data/metaonly/META.json file
+# Everything listed in corpus/metaonly/META.json file
 # We should usually never have X::Configure::Requires because those would
 # have to be satisfied before MYMETA is created, but we force it with
 # a bogus module
@@ -51,7 +51,7 @@ my @cases = (
 );
 
 for my $c ( @cases ) {
-  my $wd = pushd( catdir( qw/t data metaonly/ ) );
+  my $wd = pushd( catdir( qw/corpus metaonly/ ) );
   my @options = @{$c->{options}};
   my $label = @options ? join(" ", @options) : "(default)";
   local @ARGV = (@options);

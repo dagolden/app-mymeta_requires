@@ -46,7 +46,7 @@ my @cases = (
 for my $c ( @cases ) {
   my @options = @{$c->{options}};
   my $label = @options ? join(" ", @options) : "(default)";
-  local @ARGV = ('--file', catfile(qw/t data MYMETA.json/), @options);
+  local @ARGV = ('--file', catfile(qw/corpus MYMETA.json/), @options);
   my $app = App::mymeta_requires->new;
   my %expected = %all_reqs;
   delete $expected{$_} for @{ $c->{remove} };
