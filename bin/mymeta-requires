@@ -33,6 +33,7 @@ exit App::mymeta_requires->run;
   OTHER OPTIONS:
   --file,     -f  Specify alternate MYMETA file
   --verbose,  -v  Slightly more verbose logging
+  --report        Report on all prereqs, missing or not
   --help,     -h  Usage help
 
   All long-style options may be negated, e.g. "--no-test"
@@ -76,6 +77,10 @@ requirements.  E.g.
 
   # repeat to get any dynamic dependencies
   $ mymeta-requires | cpanm
+
+With C<--report>, instead of just listing missing prereqs, all the
+specified prereqs (or default ones) will be listed with their installed
+version (or listed as missing) along with the prerequisites required.
 
 =cut
 

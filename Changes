@@ -2,6 +2,10 @@ Revision history for App-mymeta_requires
 
 {{$NEXT}}
 
+  [ADDED]
+
+  - Added a '--report' option
+
 0.005     2013-03-29 22:24:25 America/New_York
 
   [FIXED]

@@ -10,6 +10,7 @@ package App::mymeta_requires;
 use autodie 2.00;
 use Class::Load qw/try_load_class/;
 use CPAN::Meta;
+use List::Util qw/max/;
 use Log::Dispatchouli;
 use Getopt::Lucid ':all';
 use Object::Tiny qw/opt logger/;
@@ -18,6 +19,7 @@ use CPAN::Meta::Requirements;
 my $opt_spec = [
   Param("file|f"),
   Switch("verbose|v"),
+  Switch("report"),
   Switch("help|h"),
   Switch("runtime|r")->default(1),
   Switch("configure|c")->default(1),
@@ -55,8 +57,13 @@ sub run {
   my $mymeta = $self->load_mymeta
     or $self->logger->log_fatal("Could not load a MYMETA file");
   my $prereqs = $self->merge_prereqs( $mymeta->effective_prereqs );
-  my @missing = $self->find_missing( $prereqs );
-  say for sort @missing;
+  if ( $self->opt->get_report ) {
+    print for $self->prereq_report( $prereqs );
+  }
+  else {
+    my @missing = $self->find_missing( $prereqs );
+    say for sort @missing;
+  }
   return 0;
 }
 
@@ -108,6 +115,33 @@ sub find_missing {
     }
   }
   return @missing;
+}
+
+sub prereq_report {
+    my ( $self, $prereqs ) = @_;
+    my @report;
+    for my $mod ( sort $prereqs->required_modules ) {
+        next if $mod eq 'perl';
+        my $req = $prereqs->requirements_for_module($mod);
+        if ( try_load_class($mod) ) {
+            my $version = $mod->VERSION || "<no version>";
+            push @report, [ $mod, $version, $req ];
+        }
+        else {
+            push @report, [ $mod, "<missing>", $req ];
+        }
+    }
+    my $max_mod_len = max( map { length $_->[0] } @report );
+    my $max_ver_len = max( map { length $_->[1] } @report );
+    my $max_req_len = max( map { length $_->[2] } @report );
+
+    unshift @report, [ "Module", "Have", "Want" ],
+      [ "-" x $max_mod_len, "-" x $max_ver_len, "-" x $max_req_len ];
+
+    return map {
+        sprintf( "%-*s %-*s %-*s\n",
+            $max_mod_len, $_->[0], $max_ver_len, $_->[1], $max_req_len, $_->[2] )
+    } @report;
 }
 
 1;
