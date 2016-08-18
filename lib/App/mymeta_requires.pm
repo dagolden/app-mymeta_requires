@@ -1,4 +1,4 @@
-use 5.010;
+use 5.008001;
 use strict;
 use warnings;
 
@@ -8,14 +8,13 @@ package App::mymeta_requires;
 our $VERSION = '0.006';
 
 # Dependencies
-use autodie 2.00;
 use Class::Load qw/try_load_class/;
 use CPAN::Meta;
 use List::Util qw/max/;
-use Log::Dispatchouli;
 use Getopt::Lucid ':all';
-use Object::Tiny qw/opt logger/;
 use CPAN::Meta::Requirements;
+
+use Class::Tiny qw/opt/;
 
 my $opt_spec = [
   Param("file|f"),
@@ -31,17 +30,9 @@ my $opt_spec = [
   Switch("suggests")->default(1),
 ];
 
-sub new {
-  my $class = shift;
-  my $self = bless {}, $class;
+sub BUILD {
+  my $self = shift;
   $self->{opt} = Getopt::Lucid->getopt($opt_spec);
-  $self->{logger} = Log::Dispatchouli->new({
-      ident => 'mymeta-requires',
-      to_stderr => 1,
-      debug => $self->opt->get_verbose,
-      log_pid => 0,
-  });
-  return $self;
 }
 
 sub run {
@@ -56,14 +47,14 @@ sub run {
   }
 
   my $mymeta = $self->load_mymeta
-    or $self->logger->log_fatal("Could not load a MYMETA file");
+    or die "Could not load a MYMETA file\n";
   my $prereqs = $self->merge_prereqs( $mymeta->effective_prereqs );
   if ( $self->opt->get_report ) {
     print for $self->prereq_report( $prereqs );
   }
   else {
     my @missing = $self->find_missing( $prereqs );
-    say for sort @missing;
+    print for sort @missing;
   }
   return 0;
 }
@@ -76,9 +67,9 @@ sub load_mymeta {
   for my $f ( @candidates ) {
     next unless -r $f;
     my $mymeta = eval { CPAN::Meta->load_file($f) }
-      or $self->logger->log_debug("Error loading '$f': $@");
+      or $self->_log("Error loading '$f': $@\n");
     if ( $mymeta ) {
-      $self->logger->log_debug("Got MYMETA from '$f'");
+      $self->_log("Got MYMETA from '$f'\n");
       return $mymeta;
     }
   }
@@ -109,10 +100,10 @@ sub find_missing {
   for my $mod ( $prereqs->required_modules ) {
     next if $mod eq 'perl';
     if ( try_load_class($mod) ) {
-      push @missing, $mod unless $prereqs->accepts_module($mod, $mod->VERSION);
+      push @missing, "$mod\n" unless $prereqs->accepts_module($mod, $mod->VERSION);
     }
     else {
-      push @missing, $mod;
+      push @missing, "$mod\n";
     }
   }
   return @missing;
@@ -145,12 +136,16 @@ sub prereq_report {
     } @report;
 }
 
+sub _log {
+  my $self = shift;
+  warn "$_[0]\n" if $self->opt->get_verbose;
+}
+
 1;
 
 =for Pod::Coverage
 find_missing
 load_mymeta
-logger
 merge_prereqs
 new
 opt
