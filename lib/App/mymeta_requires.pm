@@ -5,7 +5,7 @@ use warnings;
 package App::mymeta_requires;
 # ABSTRACT: Extract module requirements from MYMETA files
 
-our $VERSION = '0.006';
+our $VERSION = '0.007';
 
 # Dependencies
 use Class::Load qw/try_load_class/;
