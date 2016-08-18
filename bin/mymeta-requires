@@ -40,7 +40,7 @@ exit App::mymeta_requires->run;
 =head1 DESCRIPTION
 
 This program extracts CPAN module requirements as recorded in a F<MYMETA.json>
-or F<MYMETA.yml> file in the current directory and prints them one-perl-line to
+or F<MYMETA.yml> file in the current directory and prints them one-per-line to
 C<STDOUT>.  It is intended to help install prerequisites manually using a CPAN
 client.  For example, with L<ExtUtils::MakeMaker> 6.58 (which writes F<MYMETA>
 files) and L<App::cpanminus>:
