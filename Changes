@@ -6,6 +6,14 @@ Revision history for App-mymeta_requires
 
   - Added a '--report' option
 
+  [PREREQS]
+
+  - Dropped Perl prerequisite to v5.8.1
+
+  - Removed Log::Dispatchouli, Object::Tiny and autodie
+
+  - Added Class::Tiny and List::Util
+
 0.005     2013-03-29 22:24:25 America/New_York
 
   [FIXED]

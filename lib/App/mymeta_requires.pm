@@ -144,10 +144,10 @@ sub _log {
 1;
 
 =for Pod::Coverage
+BUILD
 find_missing
 load_mymeta
 merge_prereqs
-new
 opt
 prereq_report
 run
