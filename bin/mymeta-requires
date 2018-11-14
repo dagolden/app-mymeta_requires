@@ -37,7 +37,7 @@ exit App::mymeta_requires->run;
   --report        Report on all prereqs, missing or not
   --help,     -h  Usage help
 
-  All long-style options may be negated, e.g. "--no-test"
+  All long-style options may be negated, e.g., "--no-test"
 
 =head1 DESCRIPTION
 
@@ -56,19 +56,19 @@ Or with the traditional F<cpan> client:
   $ cpan $(mymeta-requires)
 
 The various configuration options allow customizing which prerequisite
-prerequisite phases and types are extracted.  (See L<CPAN::Meta/"PREREQUITIES">
+prerequisite phases and types are extracted.  (See L<CPAN::Meta::Spec/"PREREQUISITES">
 for an explanation of phases and types.)
 
-By default all phases except C<develop> are included and types C<requires>,
+By default all phases except C<develop> are included, as are types C<requires>,
 C<recommends> and C<suggests>.  Any phase or type may be negated by prefixing
-C<no-> to the option. E.g.
+C<no-> to the option. E.g.,
 
   $ mymeta-requires --no-suggests
 
 If no F<MYMETA.json> or F<MYMETA.yml> file is found, this will fall back
 to using a F<META.json> or F<META.yml>  This is not guaranteed to have
 all dependencies, but may be useful for bootstrapping configuration
-requirements.  E.g.
+requirements.  E.g.,
 
   # get any configuration requirements
   $ mymeta-requires | cpanm
